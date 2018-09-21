@@ -1,26 +1,26 @@
-(function(){
-	angular
-	.module("turtleFacts")
-	.controller("listCtrl",ListController);
-	ListController.$inject=['quizMetrics','dataService'];
-	
-	
+// JavaScript source code
+(function () {
+    angular
+	.module("cscFacts")
+	.controller("listCtrl", ListController);
+    ListController.$inject = ['quizMetrics','dataService'];
+    function ListController(quizMetrics,dataService) {
+        var vm = this;
+        vm.data = dataService.factData;
+        vm.search = "";
+        vm.quizMetrics = quizMetrics;
+        vm.activeFact = {};
+        vm.changeActiveFact = changeActiveFact;
 
-	function ListController(quizMetrics,dataService){
-	 var vm=this;
-      vm.data=dataService.turtlesData;
-       vm.quizMetrics=quizMetrics;	  
-       vm.search="";
-	  vm.activeTurtle={};
-	  vm.changeActiveTurtle = changeActiveTurtle;
-	function changeActiveTurtle(index)
-	{
-		vm.activeTurtle=index;
-	}
-vm.activateQuiz=activateQuiz;
-function activateQuiz()
-{
-	quizMetrics.changeState("quiz",true);
-}	
-	}
+        function changeActiveFact(index) {
+            vm.activeFact = index;
+        }
+
+        vm.activateQuiz = activateQuiz;
+        //activate quiz controller
+        function activateQuiz() {
+            quizMetrics.changeState("quiz",true);
+        }
+    }
+  
 })();
